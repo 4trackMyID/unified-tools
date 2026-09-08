@@ -4,19 +4,21 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { Home, Grip, Clock, Calendar, CheckSquare, Plus, HelpCircle, FileText } from "lucide-react";
+import { Home, Grip, Clock, Calendar, CheckSquare, Plus, HelpCircle, FileText, BookOpen } from "lucide-react";
 import React from "react";
 
 function NavItem({ 
   href, 
   icon: Icon, 
   label, 
-  isActive 
+  isActive,
+  external = false
 }: { 
   href: string, 
   icon: React.ElementType, 
   label: string, 
-  isActive: boolean 
+  isActive: boolean,
+  external?: boolean
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -29,6 +31,8 @@ function NavItem({
       <Link
         href={href}
         aria-label={label}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
         className={`inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none size-9 rounded-xl ${isActive ? 'bg-gray-100 dark:bg-gray-800 text-foreground' : 'text-gray-500 hover:text-foreground hover:bg-gray-100 dark:hover:bg-gray-800'}`}
       >
         <Icon className="size-4 pointer-events-none shrink-0" aria-hidden="true" />
@@ -133,6 +137,14 @@ export function FloatingNav() {
           icon={FileText} 
           label="Terms & Support" 
           isActive={pathname === '/terms'} 
+        />
+
+        <NavItem 
+          href="https://quranstudio.4track.my.id" 
+          icon={BookOpen} 
+          label="Al-Quran" 
+          isActive={false}
+          external
         />
       </ul>
       </motion.div>

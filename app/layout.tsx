@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Baloo_Tammudu_2 } from "next/font/google";
 import "./globals.css";
 import { FloatingNav } from "@/components/FloatingNav";
+import { PromoBanner } from "@/components/PromoBanner";
 import { TimerProvider } from "@/contexts/TimerContext";
 import { GlobalTimerHeader } from "@/components/GlobalTimerHeader";
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <GlobalTimerHeader />
           {children}
           <FloatingNav />
+          <PromoBanner />
         </TimerProvider>
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-2PT41BMK3F"} />
       </body>
